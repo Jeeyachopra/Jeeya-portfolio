@@ -1,0 +1,316 @@
+/* ==========================================================================
+   JEEYA CHOPRA — PORTFOLIO SCRIPT
+   ========================================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Mark JS as active — CSS only hides .reveal content when this class is present,
+  // so content never gets stuck invisible if a script fails further down.
+  document.body.classList.add('js-ready');
+
+  /* ------------------------------------------------------------------ */
+  /* THEME TOGGLE                                                       */
+  /* ------------------------------------------------------------------ */
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const STORAGE_KEY = 'jc-portfolio-theme';
+
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      root.setAttribute('data-theme', 'light');
+    } else {
+      root.removeAttribute('data-theme');
+    }
+  }
+
+  function getPreferredTheme() {
+    const saved = safeGet(STORAGE_KEY);
+    if (saved) return saved;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function safeGet(key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+  function safeSet(key, val) {
+    try { localStorage.setItem(key, val); } catch (e) { /* storage unavailable, ignore */ }
+  }
+
+  applyTheme(getPreferredTheme());
+
+  themeToggle.addEventListener('click', () => {
+    const isLight = root.getAttribute('data-theme') === 'light';
+    const next = isLight ? 'dark' : 'light';
+    applyTheme(next);
+    safeSet(STORAGE_KEY, next);
+  });
+
+  /* ------------------------------------------------------------------ */
+  /* CUSTOM CURSOR (desktop only)                                       */
+  /* ------------------------------------------------------------------ */
+  const cursorDot = document.querySelector('.cursor-dot');
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    window.addEventListener('mousemove', (e) => {
+      cursorDot.style.left = e.clientX + 'px';
+      cursorDot.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, .skill-bar, .project-card, .stat-card, .tool-chip, .cert-card').forEach(el => {
+      el.addEventListener('mouseenter', () => cursorDot.classList.add('is-active'));
+      el.addEventListener('mouseleave', () => cursorDot.classList.remove('is-active'));
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* NAV: scroll state, mobile toggle, active link                      */
+  /* ------------------------------------------------------------------ */
+  const navWrap = document.querySelector('.nav-wrap');
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  const navOverlay = document.getElementById('navOverlay');
+  const navLinkEls = document.querySelectorAll('.nav-link');
+  const scrollFill = document.getElementById('scrollFill');
+  const backToTop = document.getElementById('backToTop');
+
+  function closeMobileNav() {
+    navToggle.classList.remove('open');
+    navLinks.classList.remove('open');
+    navOverlay.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navOverlay.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  navOverlay.addEventListener('click', closeMobileNav);
+  navLinkEls.forEach(link => link.addEventListener('click', closeMobileNav));
+
+  const sections = document.querySelectorAll('main .section, .hero');
+
+  function onScroll() {
+    const scrollY = window.scrollY;
+
+    // nav background state
+    if (scrollY > 24) {
+      navWrap.classList.add('scrolled');
+    } else {
+      navWrap.classList.remove('scrolled');
+    }
+
+    // scroll progress rail
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+    scrollFill.style.width = pct + '%';
+
+    // back to top visibility
+    if (scrollY > 600) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+
+    // active nav link
+    let currentId = '';
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 140 && rect.bottom > 140) {
+        currentId = sec.id;
+      }
+    });
+    navLinkEls.forEach(link => {
+      const href = link.getAttribute('href').replace('#', '');
+      link.classList.toggle('active', href === currentId);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ------------------------------------------------------------------ */
+  /* TERMINAL BOOT TYPING ANIMATION                                      */
+  /* ------------------------------------------------------------------ */
+  const terminalBody = document.getElementById('terminalBody');
+  const bootLines = [
+    { prompt: '$ ', text: 'whoami', delay: 0 },
+    { prompt: '> ', text: 'Jeeya Chopra — CSE Student', delay: 0, isOutput: true },
+    { prompt: '$ ', text: 'cat objective.txt', delay: 0 },
+    { prompt: '> ', text: 'Build secure, thoughtful software. Keep learning.', delay: 0, isOutput: true },
+  ];
+
+  let hasTyped = false;
+
+  function typeTerminal() {
+    if (hasTyped) return;
+    hasTyped = true;
+    terminalBody.innerHTML = '';
+    let lineIndex = 0;
+
+    function typeLine() {
+      if (lineIndex >= bootLines.length) {
+        const cursor = document.createElement('span');
+        cursor.className = 't-cursor';
+        terminalBody.appendChild(cursor);
+        return;
+      }
+      const line = bootLines[lineIndex];
+      const lineEl = document.createElement('div');
+      const promptSpan = document.createElement('span');
+      promptSpan.className = 't-prompt';
+      promptSpan.textContent = line.prompt;
+      const textSpan = document.createElement('span');
+      textSpan.className = line.isOutput ? 't-val' : '';
+      lineEl.appendChild(promptSpan);
+      lineEl.appendChild(textSpan);
+      terminalBody.appendChild(lineEl);
+
+      let charIndex = 0;
+      const speed = line.isOutput ? 14 : 38;
+
+      function typeChar() {
+        if (charIndex < line.text.length) {
+          textSpan.textContent += line.text[charIndex];
+          charIndex++;
+          setTimeout(typeChar, speed);
+        } else {
+          lineIndex++;
+          setTimeout(typeLine, line.isOutput ? 260 : 120);
+        }
+      }
+      typeChar();
+    }
+    typeLine();
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* INTERSECTION OBSERVER — reveals, counters, skill bars, terminal     */
+  /* ------------------------------------------------------------------ */
+  const revealEls = document.querySelectorAll('.reveal');
+  const statNums = document.querySelectorAll('.stat-num');
+  const skillFills = document.querySelectorAll('.skill-fill');
+  const heroEl = document.getElementById('hero');
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Safety net: if something prevents the observer from firing for a given
+  // element (e.g. it's already in view at load but the threshold math misses it
+  // on some browsers), force everything visible after a short delay.
+  setTimeout(() => {
+    revealEls.forEach(el => el.classList.add('in-view'));
+  }, 2500);
+
+  function animateCounter(el) {
+    const isDecimal = el.dataset.decimal === 'true';
+    const target = parseFloat(el.dataset.target);
+    const duration = 1200;
+    const start = performance.now();
+
+    function frame(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = target * eased;
+      el.textContent = isDecimal ? current.toFixed(1) : Math.round(current);
+      if (progress < 1) requestAnimationFrame(frame);
+      else el.textContent = isDecimal ? target.toFixed(1) : target;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  statNums.forEach(el => statsObserver.observe(el));
+
+  const skillsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target.dataset.fill;
+        entry.target.style.width = fill + '%';
+        const pctLabel = entry.target.closest('.skill-bar').querySelector('.skill-pct');
+        if (pctLabel) {
+          animatePercentLabel(pctLabel, parseInt(fill, 10));
+        }
+        skillsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  skillFills.forEach(el => skillsObserver.observe(el));
+
+  function animatePercentLabel(el, target) {
+    const duration = 1100;
+    const start = performance.now();
+    function frame(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      el.textContent = Math.round(target * progress) + '%';
+      if (progress < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // trigger terminal typing as soon as hero is visible (essentially immediately)
+  if (heroEl) {
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          typeTerminal();
+          heroObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+    heroObserver.observe(heroEl);
+  }
+  // fallback in case observer doesn't fire fast enough on load
+  setTimeout(typeTerminal, 500);
+
+  /* ------------------------------------------------------------------ */
+  /* CONTACT FORM (client-side only — no backend wired up)               */
+  /* ------------------------------------------------------------------ */
+  const contactForm = document.getElementById('contactForm');
+  const formNote = document.getElementById('formNote');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email || !message) {
+        formNote.style.color = 'var(--gold)';
+        formNote.textContent = 'Please fill in every field before sending.';
+        return;
+      }
+
+      // No backend is connected — this simulates a send so the form feels complete.
+      formNote.style.color = 'var(--success)';
+      formNote.textContent = `Thanks, ${name.split(' ')[0]} — message captured. I'll reply to ${email} soon.`;
+      contactForm.reset();
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* FOOTER YEAR                                                         */
+  /* ------------------------------------------------------------------ */
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+});

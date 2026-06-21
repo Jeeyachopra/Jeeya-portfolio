@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeeya Chopra — Computer Science Engineer</title>
+<meta name="description" content="Portfolio of Jeeya Chopra, Computer Science Engineering student specializing in software development, cybersecurity fundamentals, and AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== Custom cursor dot (decorative, desktop only) ===== -->
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<!-- ===== Top progress / status rail ===== -->
+<div class="scroll-rail" aria-hidden="true"><div class="scroll-rail-fill" id="scrollFill"></div></div>
+
+<!-- ===== Mobile nav overlay ===== -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- ===== Nav ===== -->
+<header class="nav-wrap">
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav-logo" aria-label="Home">
+      <span class="nav-logo-mark">JC</span>
+      <span class="nav-logo-text">jeeya<span class="dim">@</span>portfolio</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" class="nav-link"><span class="nl-tag">about</span></a></li>
+      <li><a href="#education" class="nav-link"><span class="nl-tag">education</span></a></li>
+      <li><a href="#skills" class="nav-link"><span class="nl-tag">skills</span></a></li>
+      <li><a href="#projects" class="nav-link"><span class="nl-tag">projects</span></a></li>
+      <li><a href="#certifications" class="nav-link"><span class="nl-tag">certs</span></a></li>
+      <li><a href="#contact" class="nav-link"><span class="nl-tag">contact</span></a></li>
+    </ul>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ===== HERO — terminal boot sequence ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="container hero-inner">
+
+      <div class="hero-text">
+        <div class="terminal" id="terminal">
+          <div class="terminal-bar">
+            <span class="t-dot t-dot-red"></span><span class="t-dot t-dot-amber"></span><span class="t-dot t-dot-green"></span>
+            <span class="terminal-path">jeeya@portfolio:~$</span>
+          </div>
+          <div class="terminal-body" id="terminalBody"></div>
+        </div>
+
+        <h1 class="hero-name">
+          Jeeya <span class="grad-text">Chopra</span>
+        </h1>
+        <p class="hero-role">Computer Science Engineer <span class="hero-role-dot">•</span> Cybersecurity &amp; AI Enthusiast</p>
+
+        <p class="hero-objective">
+          Second-year B.Tech CSE student building toward a career at the intersection of secure software
+          engineering and applied AI — currently holding an 8.80 CGPA while shipping projects, breaking
+          things in workshops, and learning how systems fail so I can help build ones that don't.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            <span>Get in touch</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#projects" class="btn btn-ghost">View projects</a>
+        </div>
+
+        <div class="hero-meta">
+          <span class="meta-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Jalandhar, Punjab</span>
+          <span class="meta-pill meta-status"><span class="status-dot"></span>Open to internships</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="photo-frame">
+          <div class="photo-ring"></div>
+          <div class="photo-placeholder" id="photoPlaceholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+            <span>JC</span>
+          </div>
+          <div class="photo-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.6 8.5 8 10 4.4-1.5 8-5 8-10V6l-8-4Z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>
+            <span>CGPA 8.80</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <a href="#about" class="scroll-cue" aria-label="Scroll to About">
+      <span>scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+    </a>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section" id="about">
+    <div class="container">
+      <p class="section-eyebrow">// about</p>
+      <h2 class="section-title">Professional summary</h2>
+
+      <div class="about-grid">
+        <p class="about-copy reveal">
+          I'm a motivated and detail-oriented Computer Science Engineering student with a strong academic
+          record and a real curiosity for software development, emerging technologies, and continuous
+          learning. My foundation is in Python, with hands-on project experience and growing exposure to
+          cybersecurity, Git/GitHub workflows, artificial intelligence, and drone technology. Outside the
+          classroom, I've built teamwork, leadership, and discipline through NSS community service and
+          competitive sports — habits that show up in how I approach every project I take on.
+        </p>
+
+        <div class="about-stats reveal">
+          <div class="stat-card">
+            <span class="stat-num" data-target="8.8" data-decimal="true">8.8</span>
+            <span class="stat-label">CGPA <span class="dim">/ 10</span></span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" data-target="4">4</span>
+            <span class="stat-label">Languages spoken</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" data-target="3">3</span>
+            <span class="stat-label">Certifications &amp; workshops</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" data-target="100">100</span>
+            <span class="stat-label">Score in Comp. Applications</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="languages reveal">
+        <h3 class="sub-title">Languages</h3>
+        <div class="lang-grid">
+          <div class="lang-row">
+            <span class="lang-name">English</span>
+            <div class="lang-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+            <span class="lang-level">Professional</span>
+          </div>
+          <div class="lang-row">
+            <span class="lang-name">Hindi</span>
+            <div class="lang-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+            <span class="lang-level">Native</span>
+          </div>
+          <div class="lang-row">
+            <span class="lang-name">Punjabi</span>
+            <div class="lang-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+            <span class="lang-level">Native</span>
+          </div>
+          <div class="lang-row">
+            <span class="lang-name">French</span>
+            <div class="lang-dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+            <span class="lang-level">Elementary</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section class="section section-alt" id="education">
+    <div class="container">
+      <p class="section-eyebrow">// education</p>
+      <h2 class="section-title">Academic record</h2>
+
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="tc-head">
+              <h3>Bachelor of Technology — Computer Science Engineering</h3>
+              <span class="tc-tag">Second Year</span>
+            </div>
+            <p class="tc-school">Guru Nanak Dev University</p>
+            <p class="tc-detail">Currently maintaining a <strong>CGPA of 8.80 / 10</strong>, with coursework spanning programming fundamentals, data structures, and emerging-tech electives in AI and cybersecurity.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="tc-head">
+              <h3>Senior Secondary Education — Class XII</h3>
+            </div>
+            <p class="tc-detail">Completed senior secondary schooling, building the foundation for an engineering pathway.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="tc-head">
+              <h3>Secondary Education — Class X</h3>
+              <span class="tc-tag tc-tag-gold">93%</span>
+            </div>
+            <p class="tc-detail">Scored <strong>93%</strong> overall, including a perfect <strong>100/100 in Computer Applications</strong> — an early signal of where my interests were headed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section class="section" id="skills">
+    <div class="container">
+      <p class="section-eyebrow">// skills</p>
+      <h2 class="section-title">Technical toolkit</h2>
+
+      <div class="skills-grid">
+        <div class="skills-col reveal">
+          <h3 class="sub-title">Programming languages</h3>
+
+          <div class="skill-bar">
+            <div class="skill-bar-head"><span>Python</span><span class="skill-pct" data-pct="90">90%</span></div>
+            <div class="skill-fill" data-fill="90" style="width:90%;"></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-head"><span>C++ (Basic)</span><span class="skill-pct" data-pct="55">55%</span></div>
+            <div class="skill-fill" data-fill="55" style="width:55%;"></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-head"><span>Java (Basic)</span><span class="skill-pct" data-pct="50">50%</span></div>
+            <div class="skill-fill" data-fill="50" style="width:50%;"></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-head"><span>Git &amp; GitHub</span><span class="skill-pct" data-pct="65">65%</span></div>
+            <div class="skill-fill" data-fill="65" style="width:65%;"></div>
+          </div>
+        </div>
+
+        <div class="skills-col reveal">
+          <h3 class="sub-title">Tools &amp; technologies</h3>
+          <div class="tool-grid">
+            <div class="tool-chip">
+              <div class="tool-icon tool-icon-word">W</div>
+              <span>Microsoft Word</span>
+            </div>
+            <div class="tool-chip">
+              <div class="tool-icon tool-icon-ppt">P</div>
+              <span>Microsoft PowerPoint</span>
+            </div>
+            <div class="tool-chip">
+              <div class="tool-icon tool-icon-canva">C</div>
+              <span>Canva</span>
+            </div>
+            <div class="tool-chip">
+              <div class="tool-icon tool-icon-github">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.3 9.39 7.86 10.9.58.1.79-.25.79-.56 0-.27-.01-1.17-.02-2.13-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.48.12-3.08 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.83 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.6.24 2.79.12 3.08.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.25 5.69.41.36.78 1.07.78 2.16 0 1.56-.01 2.81-.01 3.19 0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+              </div>
+              <span>Git &amp; GitHub</span>
+            </div>
+          </div>
+
+          <h3 class="sub-title sub-title-spaced">Exposure areas</h3>
+          <div class="exposure-tags">
+            <span class="exp-tag">Cybersecurity Fundamentals</span>
+            <span class="exp-tag">Artificial Intelligence</span>
+            <span class="exp-tag">Drone Technology</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <p class="section-eyebrow">// projects</p>
+      <h2 class="section-title">Selected work</h2>
+      <div class="project-card">
+  <h3>Tic Tac Toe Game</h3>
+  <p>A simple game built using HTML, CSS and JavaScript.</p>
+  <a href="https://github.com/Jeeyachopra/tic-tac-toe-game" target="_blank">
+    View Project
+  </a>
+</div>
+
+<div class="project-card">
+  <h3>Portfolio Website</h3>
+  <p>Personal responsive portfolio website.</p>
+  <a href="#" target="_blank">
+    View Project
+  </a>
+</div>
+
+      <div class="projects-grid">
+        <article class="project-card reveal">
+          <div class="project-card-top">
+            <div class="project-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            </div>
+            <span class="project-tag">Python · Tkinter</span>
+          </div>
+          <h3 class="project-title">Tic Tac Toe Game</h3>
+          <a href="https://github.com/Jeeyachopra/tic-tac-toe-game"
+   target="_blank"
+   class="btn btn-primary">
+   View Project
+</a>
+          <ul class="project-list">
+            <li>Developed an interactive Tic Tac Toe application using Python and Tkinter.</li>
+            <li>Implemented full game logic, user interaction, and GUI components from scratch.</li>
+            <li>Applied core problem-solving and programming concepts to ship a functional desktop application.</li>
+          </ul>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-card-top">
+            <div class="project-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5V6a2 2 0 0 1 2-2h9l5 5v10.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 4v5h5"/><path d="M9 13h6M9 17h6"/></svg>
+            </div>
+            <span class="project-tag">Research · Education</span>
+          </div>
+          <h3 class="project-title">Role of Information Technology in Education</h3>
+          <ul class="project-list">
+            <li>Conducted research on the impact of information technology in modern education.</li>
+            <li>Prepared and presented a detailed study on digital learning, e-learning platforms, and educational accessibility.</li>
+            <li>Explored how technology enhances teaching and learning outcomes in real classrooms.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CERTIFICATIONS ===== -->
+  <section class="section" id="certifications">
+    <div class="container">
+      <p class="section-eyebrow">// certifications</p>
+      <h2 class="section-title">Certifications &amp; workshops</h2>
+
+      <div class="certs-grid">
+        <div class="cert-card">
+          <div class="cert-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 2 7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4Z"/><path d="M9.5 12l1.8 1.8L14.5 10"/></svg>
+          </div>
+          <h3>Cisco Python Essentials 1</h3>
+          <p class="cert-issuer">Cisco Networking Academy</p>
+<p>HELLO</p>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19c-3.9 0-6-2.6-6-6.5C6 9 8 6 12 3c4 3 6 6 6 9.5 0 3.9-2.1 6.5-6 6.5Z"/><path d="M12 19v3"/></svg>
+          </div>
+          <h3>AI &amp; Drone Technology Workshop</h3>
+          <p class="cert-issuer">NIT Jalandhar</p>
+          <a href="CERTIFICATES/NIT DRONE WORKSHOP.pdf"
+   target="_blank"
+   style="display:inline-block; margin-top:10px; color:#4f8cff; font-weight:bold;">
+   View Certificate
+</a>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>Cybersecurity, Git &amp; GitHub Workshop</h3>
+          <p class="cert-issuer">University Level Workshop</p>
+          <a href="CERTIFICATES/SEC TALK CERTIFICATE.pdf"
+   target="_blank"
+   style="display:inline-block; margin-top:10px; color:#4f8cff; font-weight:bold;">
+   View Certificate
+</a>
+        </div>
+      </div>
+
+      <div class="leadership reveal">
+        <h3 class="sub-title">Leadership &amp; activities</h3>
+        <div class="leadership-card">
+          <div class="leadership-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <h4>National Service Scheme (NSS)</h4>
+            <p>Active member involved in community service and social awareness initiatives. NSS Certificate Holder.</p>
+          </div>
+        </div>
+
+        <h3 class="sub-title sub-title-spaced">Achievements</h3>
+        <div class="achievements-row">
+          <div class="achievement-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg>
+            <span>Gold Medal — Kho-Kho</span>
+          </div>
+          <div class="achievement-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg>
+            <span>2nd Position — Pitcheresque Competition</span>
+          </div>
+          <div class="achievement-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 2 2 19h18L11 2Z"/><path d="M11 9v5"/><circle cx="11" cy="16.5" r=".6" fill="currentColor"/></svg>
+            <span>100/100 in Computer Applications (Class X)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section section-contact" id="contact">
+    <div class="container">
+      <p class="section-eyebrow">// contact</p>
+      <h2 class="section-title">Let's build something</h2>
+      <p class="contact-sub">Open to internships, collaborative projects, and conversations about software, security, or anything in between.</p>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <a href="mailto:jeeyaug007@gmail.com" class="contact-row">
+            <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
+            <span class="contact-text">jeeyaug007@gmail.com</span>
+          </a>
+          <a href="tel:8360640653" class="contact-row">
+            <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2.1Z"/></svg></span>
+            <span class="contact-text">8360640653</span>
+          </a>
+          <a href="https://linkedin.com/in/jeeya-chopra-996952386" target="_blank" rel="noopener" class="contact-row">
+            <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4V4Z"/><path d="M8 11v5M8 8v.01M12 16v-3.5c0-1.4 1-2.5 2.5-2.5S17 11.1 17 12.5V16"/></svg></span>
+            <span class="contact-text">linkedin.com/in/jeeya-chopra-996952386</span>
+          </a>
+          <div class="contact-row contact-row-static">
+            <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="contact-text">Jalandhar, Punjab, India</span>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell me about the opportunity or idea..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            <span>Send message</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7Z"/></svg>
+          </button>
+          <p class="form-note" id="formNote" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="nav-logo-mark">JC</span>
+      <p>Code. Create. Contribute.</p>
+    </div>
+
+    <div class="footer-socials">
+      <a href="https://linkedin.com/in/jeeya-chopra-996952386" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4V4Z"/><path d="M8 11v5M8 8v.01M12 16v-3.5c0-1.4 1-2.5 2.5-2.5S17 11.1 17 12.5V16"/></svg>
+      </a>
+      <a href="mailto:jeeyaug007@gmail.com" aria-label="Email" class="social-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+      </a>
+      <a href="#" aria-label="GitHub" class="social-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.3 9.39 7.86 10.9.58.1.79-.25.79-.56 0-.27-.01-1.17-.02-2.13-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.48.12-3.08 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.83 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.6.24 2.79.12 3.08.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.25 5.69.41.36.78 1.07.78 2.16 0 1.56-.01 2.81-.01 3.19 0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+      </a>
+    </div>
+
+    <p class="footer-copy">© <span id="year"></span> Jeeya Chopra. Built with HTML, CSS &amp; JavaScript.</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
